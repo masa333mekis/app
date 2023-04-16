@@ -40,6 +40,11 @@ module.exports = defineConfig({
       use: {
         ...require('playwright-electron'),
       },
+      /* Run tests in Electron. */
+      testMatch: '**/*.spec.js',
+      /* Run tests in Electron. */
+      testDir: './tests',
+
     },
     {
       name: 'chromium',
