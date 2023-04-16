@@ -26,6 +26,7 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
+    baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -35,17 +36,6 @@ module.exports = defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'Electron',
-      use: {
-        ...require('playwright-electron'),
-      },
-      /* Run tests in Electron. */
-      testMatch: '**/*.spec.js',
-      /* Run tests in Electron. */
-      testDir: './tests',
-
-    },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
