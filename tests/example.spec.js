@@ -8,7 +8,7 @@ test('delete button test', async () => {
   const window = await electronApp.firstWindow();
 
   // Navigate to the Decks page
-  await window.goto('http://localhost:3000', {   timeout: 90000 });
+  await window.goto('http://localhost:3000', {   timeout: 90000});
 
   // Find the delete button
   const deleteButton = await window.$('button:has-text("Delete")');
