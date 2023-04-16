@@ -26,13 +26,30 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
+    electron: require('playwright-electron'),
+    /* Timeout for all the tests. */
+    timeout: 50000,
+    /* Timeout for actions like `page.click()`. */
+    // actionTimeout: 30000,
+    /* Timeout for waiting for elements to appear. */
+    // waitForTimeout: 30000,
+    /* Timeout for waiting for elements to be hidden. */
+    // waitForHiddenTimeout: 30000,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+
   },
 
   /* Configure projects for major browsers */
   projects: [
+    {
+      name: 'Electron',
+      use: {
+        ...require('playwright-electron'),
+      },
+    },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
