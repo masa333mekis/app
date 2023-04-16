@@ -19,6 +19,29 @@ const path = require('path');
 //   await electronApp.close();
 // });
 
+const { electron } = require('playwright');
+
+test.describe('My Electron App', () => {
+  let app, window;
+
+  test.beforeAll(async () => {
+    app = await electron.launch({
+      args: ['./public/electron.js']
+    });
+  });
+
+  test.afterAll(async () => {
+    await app.close();
+  });
+
+  test('should navigate to the decks page and click the button', async () => {
+    await window.goto(`file://${path.join(__dirname, '../build/index.html')}`);
+
+
+    expect(await window.title()).toBe('Cards App');
+  });
+});
+
 // const { chromium } = require('playwright');
 
 // test('page title', (async () => {
@@ -34,33 +57,20 @@ const path = require('path');
 // })
 // );
 
-const { electron } = require('playwright');
+const { chromium } = require('playwright');
 
-describe('My Electron App', () => {
-  let app, window;
+describe('Login page', () => {
+  test('should require authorization', async () => {
+    const browser = await chromium.launch();
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
-  beforeAll(async () => {
-    app = await electron.launch({
-      args: ['./public/electron.js']
-    });
-  });
-
-  afterAll(async () => {
-    await app.close();
-  });
-
-  beforeEach(async () => {
-    window = await app.newWindow();
-  });
-
-  afterEach(async () => {
-    await window.close();
-  });
-
-  test('should navigate to the decks page and click the button', async () => {
-    await window.goto(`file://${path.join(__dirname, '../build/index.html')}`);
-
-
-    expect(await window.title()).toBe('Cards App');
+    await page.goto('http://localhost:3000');
+    await page.type('#username', 'masa@gmail.com');
+    await page.type('#password', 'masa');
+    await page.click('#submit');
+    const title = await page.title();
+    expect(title).toBe('Cards App');
+    await browser.close();
   });
 });
