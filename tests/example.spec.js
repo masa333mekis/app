@@ -25,10 +25,7 @@ test.describe('My Electron App', () => {
   let app, window;
 
   test.beforeAll(async () => {
-    app = await electron.launch({
-      executablePath: 'C:/Usersmekis/OneDrive - Univerza v Mariboru/Dokumenti/app/app/node_modules/.bin/electron',
-      args: ['./public/electron.js']
-    });
+    app = await electron.launch();
     window = await app.newWindow();
   });
 
