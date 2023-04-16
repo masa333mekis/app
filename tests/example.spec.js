@@ -3,12 +3,11 @@ const { test, expect } = require('@playwright/test');
 
 
 test('delete button test', async () => {
-  test.setTimeout(0);
   const electronApp = await electron.launch({ args: ['./public/electron.js'] });
   const window = await electronApp.firstWindow();
 
   // Navigate to the Decks page
-  await window.goto('http://localhost:3000', {   timeout: 90000});
+  await window.goto('http://localhost:3000');
 
   // Find the delete button
   const deleteButton = await window.$('button:has-text("Delete")');
@@ -19,3 +18,4 @@ test('delete button test', async () => {
   // Close the app
   await electronApp.close();
 });
+
