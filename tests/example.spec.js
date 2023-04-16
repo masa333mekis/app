@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 
 test('delete button test', async () => {
-  const electronApp = await electron.launch({ args: ['.'] });
+  const electronApp = await electron.launch({ args: ['./public/electron.js'] });
   const window = await electronApp.firstWindow();
 
   // Navigate to the Decks page
