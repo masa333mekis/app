@@ -1,17 +1,9 @@
-// @ts-check
-
-const { test, expect } = require('@playwright/test');
 const { _electron: electron } = require('playwright');
+const { test, expect } = require('@playwright/test');
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
 
 test('delete button test', async () => {
-  const electronApp = await electron.launch({ args: ['.'] });
+  const electronApp = await electron.launch({ args: ['electron.js'] });
   const window = await electronApp.firstWindow();
 
   // Navigate to the Decks page
