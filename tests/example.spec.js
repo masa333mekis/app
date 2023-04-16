@@ -59,7 +59,7 @@ test.describe('My Electron App', () => {
 
 const { chromium } = require('playwright');
 
-describe('Login page', () => {
+test.describe('Login page', () => {
   test('should require authorization', async () => {
     const browser = await chromium.launch();
     const context = await browser.newContext();
