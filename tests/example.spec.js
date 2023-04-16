@@ -1,5 +1,5 @@
 // const { _electron: electron } = require('playwright');
-// const { test, expect } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
 
 // test('delete button test', async () => {
@@ -21,14 +21,15 @@
 
 const { chromium } = require('playwright');
 
-(async () => {
+test('page title', (async () => {
   const browser = await chromium.launch();
   const context = await browser.newContext();
   const page = await context.newPage();
 
   await page.goto('http://localhost:3000');
   const title = await page.title();
-  console.log(title);
+  expect(title).toBe('Cards App');
 
   await browser.close();
-})();
+})
+);
